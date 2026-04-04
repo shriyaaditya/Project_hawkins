@@ -1,0 +1,120 @@
+/* Pixel retro font */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
+:root {
+  --bg-dark: #0b0b0f;
+  --neon-red: #ff003c;
+  --neon-blue: #00eaff;
+  --text-light: #e6e6e6;
+  --grid-bg: #111;
+  --cell-bg: #1a1a1a;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background: radial-gradient(circle at center, #0b0b0f 0%, #000 100%);
+  color: var(--text-light);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700; /* Bold */
+  min-height: 100vh;
+  display: flex;
+ 
+}
+
+/* Title */
+h2 {
+  color: var(--neon-red);
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 5px var(--neon-red),
+    0 0 10px var(--neon-red),
+    0 0 20px var(--neon-red);
+}
+
+/* Game container */
+.game-container {
+  text-align: center;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+  background: var(--grid-bg);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow:
+    0 0 10px rgba(255, 0, 60, 0.3),
+    inset 0 0 20px rgba(0, 234, 255, 0.1);
+}
+
+/* Cells */
+.cell {
+  background: var(--cell-bg);
+  border: 1px solid #222;
+  transition: all 0.2s ease;
+}
+
+/* Hover glow */
+.cell:hover {
+  background: #222;
+  box-shadow:
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue);
+  transform: scale(1.05);
+}
+
+/* Player */
+.cell.player {
+  background: var(--neon-blue);
+  box-shadow:
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue);
+}
+
+/* Enemy */
+.cell.enemy {
+  background: var(--neon-red);
+  box-shadow:
+    0 0 10px var(--neon-red),
+    0 0 20px var(--neon-red);
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0% { opacity: 1; }
+  10% { opacity: 0.6; }
+  20% { opacity: 1; }
+  30% { opacity: 0.4; }
+  40% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+h2 {
+  animation: flicker 3s infinite;
+}
+
+/* Subtle scanline effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    rgba(255, 0, 60, 0.03) 0px,
+    rgba(255, 0, 60, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
